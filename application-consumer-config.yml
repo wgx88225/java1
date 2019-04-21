@@ -1,0 +1,50 @@
+# 配置dev环境
+server:
+  port: 7070
+spring:
+  profiles: dev
+  application: #指定微服务对外（提供者）的暴露的名称
+    name: vince-consumer-depart
+eureka:
+  client:
+    service-url: #指定注册服务中心地址
+      #defaultZone: http://eureka8100.com:8100/eureka,http://eureka8200.com:8200/eureka,http://eureka8300.com:8300/eureka
+      defaultZone: http://eureka8400.com:8400/eureka
+#开启Feign对Hystrix的支持
+feign:
+  hystrix:
+    enabled: true
+#设置服务熔断时限，默认5000毫秒
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+---
+# 配置test环境
+server:
+  port: 9090
+spring:
+  profiles: test
+  application: #指定微服务对外（提供者）的暴露的名称
+    name: vince-consumer-depart
+eureka:
+  client:
+    service-url: #指定注册服务中心地址
+      #defaultZone: http://eureka8100.com:8100/eureka,http://eureka8200.com:8200/eureka,http://eureka8300.com:8300/eureka
+      defaultZone: http://eureka8500.com:8500/eureka
+#开启Feign对Hystrix的支持
+feign:
+  hystrix:
+    enabled: true
+#设置服务熔断时限，默认5000毫秒
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
